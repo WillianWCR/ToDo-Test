@@ -13,6 +13,12 @@ function App() {
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
 
+  // Effects
+  useEffect(() => {
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
   // Functions
   const filterHandler = () => {
     switch(status){
@@ -44,7 +50,7 @@ function App() {
         setInputText = { setInputText }
         setStatus = { setStatus }
       />
-      <TodoList todos={ todos } setTodos={ setTodos }/>
+      <TodoList todos={ todos } setTodos={ setTodos } filteredTodos={ filteredTodos }/>
     </div>
   );
 }
